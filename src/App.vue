@@ -1,7 +1,22 @@
 <template>
-  <div></div>
+  <div>
+    <Home />
+  </div>
 </template>
 
-<script></script>
+<script>
+import Home from "@/components/Home.vue";
 
-<style></style>
+export default {
+  components: {
+    Home,
+  },
+};
+</script>
+
+<style>
+body {
+  background: rgb(13, 17, 23);
+  color: aliceblue;
+}
+</style>
