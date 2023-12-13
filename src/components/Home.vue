@@ -11,7 +11,7 @@
         :amount="amount"
       >
         <template #graphic>
-          <Graphic :amounts="amounts" />
+          <Graphic :amounts="amounts" @select="select" />
         </template>
         <template #action>
           <Action @create="create" />
@@ -59,7 +59,7 @@ export default {
         .map((m) => m.amount);
 
       return lastDays.map((m, i) => {
-        const lastMovements = lastDays.slice(0, i);
+        const lastMovements = lastDays.slice(0, i + 1);
         return lastMovements.reduce((suma, movement) => {
           return suma + movement;
         }, 0);
@@ -91,7 +91,13 @@ export default {
       this.save();
     },
     save() {
+      // guarda nuestros moviemientos en local storage,
+      // esto en el despliegue no deberia seguir siendo asi, es solo por fines practicos.
       localStorage.setItem("movements", JSON.stringify(this.movements));
+    },
+    select(el) {
+      // console.log(el);
+      this.amount = el;
     },
   },
 };
